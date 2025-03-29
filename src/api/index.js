@@ -1,14 +1,28 @@
 // src/api/index.js
 import axios from 'axios';
 
+// src/api/index.js의 수정된 부분
+
 // API 기본 설정
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api',
+  // 상대 경로를 사용하거나 동적으로 현재 호스트 주소를 사용
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// 또는 아래와 같이 동적으로 현재 호스트 주소를 사용할 수도 있습니다
+/*
+const API = axios.create({
+  baseURL: `${window.location.protocol}//${window.location.hostname}:8080/api`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+*/
+
+// 나머지 코드는 그대로 유지
 // 요청 인터셉터 - 토큰 추가
 API.interceptors.request.use(
   (config) => {
@@ -33,7 +47,6 @@ API.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 // 인증 관련 API
 export const authAPI = {
   // 스웨거 문서에 맞춘 로그인 API

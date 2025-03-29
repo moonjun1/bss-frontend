@@ -152,8 +152,12 @@ const AdminLayout = ({ children }) => {
 
   // 사이드바 메뉴 항목
   const menuItems = [
-    { text: '대시보드', icon: <DashboardIcon />, path: '/admin' },
-    { text: '사용자 관리', icon: <PeopleIcon />, path: '/admin/users' },
+    // 대시보드 메뉴 주석처리
+    // { text: '대시보드', icon: <DashboardIcon />, path: '/admin' },
+    
+    // 사용자 관리 메뉴 주석처리
+    // { text: '사용자 관리', icon: <PeopleIcon />, path: '/admin/users' },
+    
     { text: '게시글 관리', icon: <ArticleIcon />, path: '/admin/posts' },
     { text: '지원 양식 관리', icon: <DescriptionIcon />, path: '/admin/forms' },
     { text: '지원서 관리', icon: <AssignmentIndIcon />, path: '/admin/applications' },
