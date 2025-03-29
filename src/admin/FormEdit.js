@@ -10,7 +10,7 @@ import {
   IconButton
 } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { adminAPI } from '../../api';
+import { adminAPI } from '../api';
 
 // FormCreate 컴포넌트와 거의 동일하지만, 기존 양식 데이터를 불러와서 수정하는 기능이 추가됩니다.
 // 실제 구현에서는 FormCreate 컴포넌트의 로직을 재사용하는 것이 좋습니다.

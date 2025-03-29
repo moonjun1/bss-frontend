@@ -37,7 +37,7 @@ import {
   CheckBox as MultipleChoiceIcon
 } from '@mui/icons-material';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { adminAPI } from '../../api';
+import { adminAPI } from '../api';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
 import koLocale from 'date-fns/locale/ko';
@@ -262,8 +262,7 @@ const FormCreate = () => {
       }
       
       if (formData.endDate < formData.startDate) {
-        setError('종료일은
-         시작일보다 늦어야 합니다.');
+        setError('종료일은시작일보다 늦어야 합니다.');
         return;
       }
       

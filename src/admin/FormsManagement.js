@@ -31,7 +31,7 @@ import {
   Delete as DeleteIcon,
   Visibility as VisibilityIcon
 } from '@mui/icons-material';
-import { adminAPI } from '../../api';
+import { adminAPI } from '../api';
 
 const FormsManagement = () => {
   const [forms, setForms] = useState([]);

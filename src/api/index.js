@@ -114,4 +114,60 @@ export const applicationAPI = {
     })
 };
 
+// 관리자 관련 API
+export const adminAPI = {
+  // 대시보드 통계
+  getStats: () => API.get('/admin/stats'),
+  
+  // 사용자 관리
+  getUsers: (page = 0, size = 10) => 
+    API.get(`/admin/users?page=${page}&size=${size}`),
+  getUser: (id) => API.get(`/admin/users/${id}`),
+  createUser: (userData) => API.post('/admin/users', userData),
+  updateUser: (id, userData) => API.put(`/admin/users/${id}`, userData),
+  updateUserStatus: (id, statusData) => 
+    API.patch(`/admin/users/${id}/status`, statusData),
+  updateUserRole: (id, roleData) => 
+    API.patch(`/admin/users/${id}/role`, roleData),
+  deleteUser: (id) => API.delete(`/admin/users/${id}`),
+  searchUsers: (keyword) => 
+    API.get(`/admin/users/search?keyword=${keyword}`),
+  
+  // 지원 양식 관리
+  getForms: (page = 0, size = 10) => 
+    API.get(`/admin/forms?page=${page}&size=${size}`),
+  getFormsByStatus: (status, page = 0, size = 10) => 
+    API.get(`/admin/forms/status/${status}?page=${page}&size=${size}`),
+  getForm: (id) => API.get(`/admin/forms/${id}`),
+  createForm: (formData) => API.post('/admin/forms', formData),
+  updateForm: (id, formData) => API.put(`/admin/forms/${id}`, formData),
+  deleteForm: (id) => API.delete(`/admin/forms/${id}`),
+  
+  // 지원서 관리
+  getApplications: (page = 0, size = 10) => 
+    API.get(`/admin/applications?page=${page}&size=${size}`),
+  getApplicationsByStatus: (status, page = 0, size = 10) => 
+    API.get(`/admin/applications/status/${status}?page=${page}&size=${size}`),
+  getApplicationsByForm: (formId, page = 0, size = 10) => 
+    API.get(`/admin/applications/form/${formId}?page=${page}&size=${size}`),
+  getApplicationsByStatusAndForm: (status, formId, page = 0, size = 10) => 
+    API.get(`/admin/applications/status/${status}/form/${formId}?page=${page}&size=${size}`),
+  getApplication: (id) => API.get(`/admin/applications/${id}`),
+  updateApplicationStatus: (id, statusData) => 
+    API.patch(`/admin/applications/${id}/status`, statusData),
+  deleteApplication: (id) => API.delete(`/admin/applications/${id}`),
+  searchApplications: (keyword) => 
+    API.get(`/admin/applications/search?keyword=${keyword}`),
+  getApplicationDocuments: (applicationId) => 
+    API.get(`/admin/applications/${applicationId}/documents`),
+  
+  // 게시글 관리
+  getAllPosts: (page = 0, size = 10) => 
+    API.get(`/admin/posts?page=${page}&size=${size}`),
+  getPost: (id) => API.get(`/admin/posts/${id}`),
+  updatePostStatus: (id, status) => 
+    API.patch(`/admin/posts/${id}/status?status=${status}`),
+  deletePost: (id) => API.delete(`/admin/posts/${id}`)
+};
+
 export default API;

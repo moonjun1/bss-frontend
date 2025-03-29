@@ -98,19 +98,24 @@ const AdminLayout = ({ children }) => {
       const userStr = localStorage.getItem('user');
       
       if (!token || !userStr) {
-        // 인증되지 않은, 로그인페이지로 리다이렉트
+        // 인증되지 않은 경우, 로그인 페이지로 리다이렉트
         navigate('/login', { state: { from: location.pathname } });
         return;
       }
       
       try {
         const userData = JSON.parse(userStr);
-        if (userData.role !== 'ROLE_ADMIN') {
-          // 관리자가 아닌 경우 홈으로 리다이렉트
+        console.log("사용자 정보:", userData); // 디버깅용
+        
+        // role이 없거나 관리자가 아닌 경우에만 리다이렉트
+        if (!userData.role || userData.role !== 'ROLE_ADMIN') {
+          console.warn("관리자 권한이 없습니다:", userData.role);
           navigate('/', { replace: true });
           return;
         }
         
+        // 관리자 권한이 있는 경우
+        console.log("관리자 권한 확인됨");
         setUser(userData);
       } catch (error) {
         console.error('사용자 정보 파싱 오류:', error);

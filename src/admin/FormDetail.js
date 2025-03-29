@@ -41,7 +41,7 @@ import {
   RadioButtonUnchecked as RadioIcon,
   CheckBoxOutlineBlank as CheckboxIcon
 } from '@mui/icons-material';
-import { adminAPI } from '../../api';
+import { adminAPI } from '../api';
 
 const FormDetail = () => {
   const { id } = useParams();

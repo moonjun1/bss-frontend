@@ -20,7 +20,7 @@ import {
   DescriptionOutlined as DescriptionIcon,
   AssignmentIndOutlined as AssignmentIcon
 } from '@mui/icons-material';
-import { adminAPI } from '../../api';
+import { adminAPI } from '../api';
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
