@@ -5,8 +5,10 @@ import axios from 'axios';
 
 // API 기본 설정
 const API = axios.create({
-  // 상대 경로를 사용하거나 동적으로 현재 호스트 주소를 사용
-  baseURL: 'http://localhost:8080/api',
+  // 개발 환경과 프로덕션 환경에서 다르게 동작하도록 설정
+  baseURL: process.env.NODE_ENV === 'production' 
+    ? '/api' // 프로덕션 환경에서는 상대 경로 사용 (Nginx가 프록시)
+    : 'http://localhost:8080/api', // 개발 환경에서는 직접 백엔드 접근
   headers: {
     'Content-Type': 'application/json',
   },
