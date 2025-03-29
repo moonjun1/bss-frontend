@@ -1,0 +1,24 @@
+/* src/styles/animations.css */
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes rotate-reverse {
+    100% { transform: rotate(-360deg); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  @keyframes orbital {
+    0% { transform: translate(-50%, -50%) translate(70px, 0) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) translate(70px, 0) rotate(360deg); }
+  }
+  
+  @keyframes float-particle {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+    100% { transform: translate(0, 0); }
+  }
