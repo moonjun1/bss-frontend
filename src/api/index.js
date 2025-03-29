@@ -6,7 +6,7 @@ import axios from 'axios';
 // API 기본 설정
 const API = axios.create({
   // 상대 경로를 사용하거나 동적으로 현재 호스트 주소를 사용
-  baseURL: '/api',
+  baseURL: 'http://localhost:8080/api',
   headers: {
     'Content-Type': 'application/json',
   },
