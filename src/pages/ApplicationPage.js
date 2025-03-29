@@ -50,7 +50,7 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 // 지원 단계
-const steps = ['지원 양식 선택', '개인 정보 입력', '지원서 작성', '서류 업로드', '제출 완료'];
+const steps = ['지원 양식 선택', '개인 정보 입력', '지원서 작성', '제출 완료'];
 
 const ApplicationPage = () => {
   const [activeForms, setActiveForms] = useState([]);
@@ -71,9 +71,6 @@ const ApplicationPage = () => {
     },
     answers: {}
   });
-  
-  // 업로드된 파일들
-  const [files, setFiles] = useState({});
   
   // 활성화된 지원 양식 목록 불러오기
   useEffect(() => {
@@ -161,26 +158,6 @@ const ApplicationPage = () => {
     }));
   };
   
-  // 파일 업로드 핸들러
-  const handleFileChange = (e, fileType) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setFiles(prev => ({
-        ...prev,
-        [fileType]: file
-      }));
-    }
-  };
-  
-  // 파일 삭제 핸들러
-  const handleFileRemove = (fileType) => {
-    setFiles(prev => {
-      const newFiles = { ...prev };
-      delete newFiles[fileType];
-      return newFiles;
-    });
-  };
-  
   // 다음 단계로 이동
   const handleNext = () => {
     // 현재 단계에 대한 유효성 검사
@@ -225,13 +202,6 @@ const ApplicationPage = () => {
         }
       }
     }
-    else if (activeStep === 3) {
-      // 필수 파일 검증 (이력서는 필수라고 가정)
-      if (!files.resume) {
-        isValid = false;
-        errorMessage = '이력서를 업로드해주세요.';
-      }
-    }
     
     if (!isValid) {
       setError(errorMessage);
@@ -240,11 +210,12 @@ const ApplicationPage = () => {
     
     // 에러 초기화 및 다음 단계로 이동
     setError('');
-    setActiveStep(prev => prev + 1);
     
     // 마지막 단계에서는 제출 진행
-    if (activeStep === 3) {
+    if (activeStep === 2) {
       handleSubmit();
+    } else {
+      setActiveStep(prev => prev + 1);
     }
   };
   
@@ -292,35 +263,40 @@ const ApplicationPage = () => {
       // 비로그인 사용자 지원서 제출 API 호출
       const response = await applicationAPI.submitGuestApplication(applicationData);
       
-      if (response.data?.status === 201 && response.data?.data) {
-        const applicationId = response.data.data;
-        setSubmissionId(applicationId);
-        
-        // 파일 업로드 처리
-        for (const [fileType, file] of Object.entries(files)) {
-          if (file) {
-            const fileFormData = new FormData();
-            fileFormData.append('file', file);
-            fileFormData.append('applicationId', applicationId);
-            fileFormData.append('fileType', fileType);
-            
-            await applicationAPI.uploadDocument(fileFormData);
-          }
+      // 응답 처리를 위한 console.log 추가 (디버깅용)
+      console.log("지원서 제출 응답:", response);
+      
+      // 응답이 있고 데이터가 있는 경우 - 더 유연하게 처리하도록 수정
+      if (response && response.data) {
+        // status가 201이거나 200인 경우
+        if ([200, 201].includes(response.data.status)) {
+          // 응답에 data 필드가 있으면 해당 값을, 없으면 임시 ID 사용
+          const applicationId = response.data.data || 'temp-' + Date.now();
+          setSubmissionId(applicationId);
+          setSuccess(true);
+          
+          // 제출 완료 단계로 이동
+          setActiveStep(3);
+        } else {
+          // 서버에서 오류 응답을 받은 경우
+          setError(response.data.message || '지원서 제출에 실패했습니다.');
         }
-        
-        // 제출 성공
-        setSuccess(true);
       } else {
-        setError(response.data?.message || '지원서 제출에 실패했습니다.');
-        setActiveStep(3); // 업로드 단계로 되돌아감
+        // 응답이 없거나 응답 형식이 이상한 경우
+        setError('지원서 제출 중 오류가 발생했습니다.');
       }
     } catch (err) {
       console.error('지원서 제출 중 오류 발생:', err);
+      
+      // API 응답 로그 (디버깅용)
+      if (err.response) {
+        console.error('에러 응답:', err.response);
+      }
+      
       setError(
         err.response?.data?.message || 
         '지원서 제출 중 오류가 발생했습니다. 다시 시도해주세요.'
       );
-      setActiveStep(3); // 업로드 단계로 되돌아감
     } finally {
       setLoading(false);
     }
@@ -339,7 +315,6 @@ const ApplicationPage = () => {
       },
       answers: {}
     });
-    setFiles({});
     setSuccess(false);
     setSubmissionId(null);
   };
@@ -463,7 +438,8 @@ const ApplicationPage = () => {
                         boxShadow: selectedFormId === form.id ? '0 4px 12px rgba(26, 35, 126, 0.2)' : '0 2px 8px rgba(0,0,0,0.05)',
                         '&:hover': {
                           boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-                        }
+                        },
+                        transition: 'all 0.3s ease'
                       }} 
                       onClick={() => setSelectedFormId(form.id)}
                     >
@@ -582,156 +558,7 @@ const ApplicationPage = () => {
           </Box>
         );
         
-      case 3: // 서류 업로드
-        return (
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              서류 업로드
-            </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph>
-              필요한 서류를 업로드해주세요. 이력서는 필수 제출 항목입니다.
-            </Typography>
-            
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    border: '1px dashed',
-                    borderColor: files.resume ? 'primary.main' : 'divider',
-                    bgcolor: files.resume ? 'rgba(26, 35, 126, 0.05)' : 'transparent',
-                    textAlign: 'center',
-                    mb: 2
-                  }}
-                >
-                  {files.resume ? (
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
-                        <strong>이력서:</strong> {files.resume.name}
-                      </Typography>
-                      <Button 
-                        variant="outlined" 
-                        color="error" 
-                        size="small"
-                        onClick={() => handleFileRemove('resume')}
-                      >
-                        삭제
-                      </Button>
-                    </Box>
-                  ) : (
-                    <Button
-                      component="label"
-                      variant="contained"
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      이력서 업로드 (필수)
-                      <VisuallyHiddenInput 
-                        type="file" 
-                        accept=".pdf,.doc,.docx"
-                        onChange={(e) => handleFileChange(e, 'resume')}
-                      />
-                    </Button>
-                  )}
-                </Paper>
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    border: '1px dashed',
-                    borderColor: files.transcript ? 'primary.main' : 'divider',
-                    bgcolor: files.transcript ? 'rgba(26, 35, 126, 0.05)' : 'transparent',
-                    textAlign: 'center',
-                    height: '100%'
-                  }}
-                >
-                  {files.transcript ? (
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
-                        <strong>성적증명서:</strong> {files.transcript.name}
-                      </Typography>
-                      <Button 
-                        variant="outlined" 
-                        color="error" 
-                        size="small"
-                        onClick={() => handleFileRemove('transcript')}
-                      >
-                        삭제
-                      </Button>
-                    </Box>
-                  ) : (
-                    <Button
-                      component="label"
-                      variant="outlined"
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      성적증명서 업로드
-                      <VisuallyHiddenInput 
-                        type="file" 
-                        accept=".pdf,.doc,.docx"
-                        onChange={(e) => handleFileChange(e, 'transcript')}
-                      />
-                    </Button>
-                  )}
-                </Paper>
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    border: '1px dashed',
-                    borderColor: files.certificate ? 'primary.main' : 'divider',
-                    bgcolor: files.certificate ? 'rgba(26, 35, 126, 0.05)' : 'transparent',
-                    textAlign: 'center',
-                    height: '100%'
-                  }}
-                >
-                  {files.certificate ? (
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
-                        <strong>자격증/증명서:</strong> {files.certificate.name}
-                      </Typography>
-                      <Button 
-                        variant="outlined" 
-                        color="error" 
-                        size="small"
-                        onClick={() => handleFileRemove('certificate')}
-                      >
-                        삭제
-                      </Button>
-                    </Box>
-                  ) : (
-                    <Button
-                      component="label"
-                      variant="outlined"
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      자격증/증명서 업로드
-                      <VisuallyHiddenInput 
-                        type="file" 
-                        accept=".pdf,.doc,.docx"
-                        onChange={(e) => handleFileChange(e, 'certificate')}
-                      />
-                    </Button>
-                  )}
-                </Paper>
-              </Grid>
-              
-              <Grid item xs={12}>
-                <Typography variant="body2" color="text.secondary">
-                  * 지원한 파일은 PDF, DOC, DOCX 형식만 허용됩니다.
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  * 파일 크기는 최대 10MB까지 가능합니다.
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
-        );
-        
-      case 4: // 제출 완료
+      case 3: // 제출 완료
         return (
           <Box sx={{ textAlign: 'center', py: 4 }}>
             <CheckCircleIcon color="success" sx={{ fontSize: 80, mb: 2 }} />
@@ -750,7 +577,7 @@ const ApplicationPage = () => {
             <Button 
               variant="contained" 
               color="primary"
-              onClick={handleReset}
+              onClick={handleReset} 
               sx={{ mt: 3 }}
             >
               새로운 지원서 작성
@@ -770,7 +597,8 @@ const ApplicationPage = () => {
           pt: 12,
           pb: 8,
           bgcolor: '#1a237e',
-          color: 'white'
+          color: 'white',
+          background: 'linear-gradient(135deg, #1a237e 30%, #303f9f 90%)'
         }}
       >
         <Container maxWidth="lg">
@@ -779,19 +607,43 @@ const ApplicationPage = () => {
             component="h1"
             sx={{
               fontWeight: 700,
-              mb: 2
+              mb: 2,
+              animation: 'fadeIn 1s ease-out',
+              '@keyframes fadeIn': {
+                from: { opacity: 0, transform: 'translateY(-20px)' },
+                to: { opacity: 1, transform: 'translateY(0)' }
+              }
             }}
           >
             연구실 지원
           </Typography>
-          <Typography variant="h6" sx={{ opacity: 0.8, mb: 4 }}>
+          <Typography variant="h6" sx={{ 
+            opacity: 0.8, 
+            mb: 4,
+            animation: 'slideIn 1.2s ease-out',
+            '@keyframes slideIn': {
+              from: { opacity: 0, transform: 'translateX(-20px)' },
+              to: { opacity: 0.8, transform: 'translateX(0)' }
+            }
+          }}>
             BSS 연구실과 함께 미래를 선도할 인재를 기다립니다
           </Typography>
         </Container>
       </Box>
       
       <Container maxWidth="md" sx={{ py: 8 }}>
-        <Card sx={{ borderRadius: 2, boxShadow: '0 5px 20px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+        <Card 
+          sx={{ 
+            borderRadius: 2, 
+            boxShadow: '0 5px 20px rgba(0,0,0,0.1)', 
+            overflow: 'hidden',
+            animation: 'slideUp 0.8s ease-out',
+            '@keyframes slideUp': {
+              from: { opacity: 0, transform: 'translateY(30px)' },
+              to: { opacity: 1, transform: 'translateY(0)' }
+            }
+          }}
+        >
           <Box
             sx={{
               height: 8,
@@ -828,7 +680,7 @@ const ApplicationPage = () => {
                   {getStepContent(activeStep)}
                 </Box>
                 
-                {activeStep !== 4 && (
+                {activeStep !== 3 && (
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Button
                       disabled={activeStep === 0}
@@ -840,13 +692,13 @@ const ApplicationPage = () => {
                     <Button
                       variant="contained"
                       onClick={handleNext}
-                      endIcon={activeStep === 3 ? <SendIcon /> : undefined}
+                      endIcon={activeStep === 2 ? <SendIcon /> : undefined}
                       disabled={
                         (activeStep === 0 && !selectedFormId) ||
                         loading
                       }
                     >
-                      {activeStep === 3 ? '제출' : '다음'}
+                      {activeStep === 2 ? '제출' : '다음'}
                     </Button>
                   </Box>
                 )}

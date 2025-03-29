@@ -4,7 +4,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { CircularProgress, Box } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 
-// 인증이 필요한 라우트를 위한 컴포넌트
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
   const { isAuthenticated, isAdmin, loading } = useAuth();
   const location = useLocation();
@@ -27,7 +26,7 @@ const ProtectedRoute = ({ children, requireAdmin = false }) => {
 
   // 인증되지 않은 사용자라면 로그인 페이지로 리다이렉트
   if (!isAuthenticated()) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
   // 관리자 권한이 필요한 페이지인데 관리자가 아니라면

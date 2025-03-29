@@ -26,10 +26,12 @@ export const AuthProvider = ({ children }) => {
           } else {
             // 응답이 유효하지 않은 경우 토큰 제거
             localStorage.removeItem('token');
+            localStorage.removeItem('user');
           }
         } catch (error) {
           console.error('사용자 정보를 가져오는데 실패했습니다:', error);
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
         }
       }
       
@@ -53,6 +55,14 @@ export const AuthProvider = ({ children }) => {
         
         // 토큰 저장
         localStorage.setItem('token', userData.token);
+        
+        // 사용자 정보 저장
+        localStorage.setItem('user', JSON.stringify({
+          id: userData.id,
+          username: userData.username,
+          email: userData.email,
+          role: userData.role
+        }));
         
         // 현재 사용자 정보 설정
         setCurrentUser({
@@ -81,18 +91,34 @@ export const AuthProvider = ({ children }) => {
       console.error('로그아웃 중 에러가 발생했습니다:', error);
     } finally {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       setCurrentUser(null);
     }
   };
 
   // 인증 여부 확인
   const isAuthenticated = () => {
-    return !!currentUser;
+    return !!currentUser || !!localStorage.getItem('token');
   };
 
   // 관리자 여부 확인
   const isAdmin = () => {
-    return currentUser?.role === 'ROLE_ADMIN';
+    if (currentUser) {
+      return currentUser.role === 'ROLE_ADMIN';
+    }
+    
+    // localStorage에서 확인
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        return user.role === 'ROLE_ADMIN';
+      } catch (e) {
+        return false;
+      }
+    }
+    
+    return false;
   };
 
   // 제공할 컨텍스트 값

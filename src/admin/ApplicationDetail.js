@@ -1,4 +1,4 @@
-// src/pages/admin/ApplicationDetail.js
+// src/admin/ApplicationDetail.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import {

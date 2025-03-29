@@ -1,4 +1,4 @@
-// src/pages/admin/Dashboard.js
+// src/admin/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import {
   Box,
