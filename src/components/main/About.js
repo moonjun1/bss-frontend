@@ -10,13 +10,13 @@ const About = () => {
   const features = [
     {
       icon: <SchoolIcon fontSize="large" />,
-      title: '세계적 수준의 교육',
-      description: '최신 연구 및 기술 동향을 반영한 교육 프로그램을 통해 학생들의 역량을 강화합니다.'
+      title: '다양한 세미나',
+      description: '다양한 세미나를 통해 학생들의 역량을 강화합니다.'
     },
     {
       icon: <GroupsIcon fontSize="large" />,
       title: '협력적 연구 환경',
-      description: '연구원들 간의 활발한 협업과 토론을 통해 창의적인 아이디어가 탄생합니다.'
+      description: '랩원들 간의 활발한 협업과 토론을 통해 창의적인 아이디어가 탄생합니다.'
     },
     {
       icon: <TrendingUpIcon fontSize="large" />,
@@ -70,7 +70,6 @@ const About = () => {
             }}
           >
             BSS 연구실은 혁신적인 기술과 연구를 통해 미래 사회의 문제를 해결하고자 합니다.
-            다양한 전문 분야의 석학들이 모여 창의적인 연구를 진행하고 있습니다.
           </Typography>
         </Box>
 

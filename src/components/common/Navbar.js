@@ -19,14 +19,6 @@ import ScienceIcon from '@mui/icons-material/Science';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { authAPI } from '../../api';
 
-const pages = [
-  { title: '홈', path: '/' },
-  { title: '소개', path: '/about' },
-  { title: '연구', path: '/research' },
-  { title: '게시판', path: '/board' },
-  { title: '지원', path: '/apply' }
-];
-
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -46,6 +38,30 @@ const Navbar = () => {
       setUser(null);
     }
   }, [location.pathname]); // URL이 변경될 때마다 사용자 정보 확인
+
+  // 로그인 상태에 따라 다른 페이지 배열 사용
+  const getPages = () => {
+    // 기본 페이지 (모든 사용자에게 보이는 페이지)
+    const defaultPages = [
+      { title: '홈', path: '/' },
+      { title: '소개', path: '/about' },
+      { title: '연구', path: '/research' },
+      { title: '지원', path: '/apply' }
+    ];
+    
+    // 로그인한 사용자에게만 게시판 메뉴 추가
+    if (user) {
+      return [
+        ...defaultPages,
+        { title: '게시판', path: '/board' }
+      ];
+    }
+    
+    return defaultPages;
+  };
+
+  // 현재 페이지에 맞는 페이지 목록 가져오기
+  const pages = getPages();
 
   // 스크롤 이벤트 리스너
   useEffect(() => {

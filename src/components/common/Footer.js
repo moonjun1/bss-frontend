@@ -46,7 +46,7 @@ const Footer = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <LocationIcon fontSize="small" sx={{ mr: 1 }} />
               <Typography variant="body2">
-                서울특별시 강남구 테헤란로 123
+              경기 포천시 호국로 1007 (우) 11159(지번) 선단동 산 11-1 대진대학교 이공학관다동 
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>

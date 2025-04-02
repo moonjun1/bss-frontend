@@ -43,9 +43,32 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/research" element={<ResearchPage />} />
             
-            <Route path="/board" element={<BoardPage />} />
-            <Route path="/board/create" element={<CreatePostPage />} />
-            <Route path="/board/:id" element={<PostDetailPage />} />
+            {/* 게시판 관련 라우트 - 로그인 필요 */}
+            <Route 
+              path="/board" 
+              element={
+                <ProtectedRoute>
+                  <BoardPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/board/create" 
+              element={
+                <ProtectedRoute>
+                  <CreatePostPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/board/:id" 
+              element={
+                <ProtectedRoute>
+                  <PostDetailPage />
+                </ProtectedRoute>
+              } 
+            />
+            
             <Route path="/apply" element={<ApplicationPage />} />
             
             {/* 마이페이지 - 로그인 필요 */}

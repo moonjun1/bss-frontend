@@ -62,9 +62,9 @@ const AboutPage = () => {
       description: '빅데이터 분석, 데이터 마이닝, 통계적 모델링을 통해 데이터 기반 의사결정을 지원합니다.'
     },
     {
-      title: '인지과학',
+      title: '알고리즘',
       icon: <PsychologyIcon fontSize="large" />,
-      description: '인간의 인지과정과 기계학습 알고리즘의 융합을 통해 지능형 시스템을 개발합니다.'
+      description: '다양한 알고리즘을 공부합니다'
     },
     {
       title: '융합 연구',
@@ -76,37 +76,43 @@ const AboutPage = () => {
   // 연구원 데이터
   const researchers = [
     {
-      name: '김교수',
-      position: '연구소장',
-      area: '인공지능, 머신러닝',
+      name: '이찬우',
+      position: '랩장',
+      area: '프론트엔드, 임베디드 시스템템',
       image: null
     },
     {
-      name: '이박사',
-      position: '선임연구원',
-      area: '데이터 사이언스',
+      name: '심유승',
+      position: '랩원',
+      area: '서버, 백엔드',
       image: null
     },
     {
-      name: '박연구원',
-      position: '연구원',
+      name: '안지민',
+      position: '랩원',
       area: '자연어 처리',
       image: null
     },
     {
-      name: '정연구원',
-      position: '연구원',
-      area: '컴퓨터 비전',
+      name: '최송이',
+      position: '랩원',
+      area: '프론트엔드',
+      image: null
+    },
+    {
+      name: '문준원',
+      position: '랩원',
+      area: '백엔드',
       image: null
     }
   ];
 
   // 연구소 연혁 데이터
   const history = [
-    { year: '2025', event: 'BSS-Lab 국제 인공지능 콘퍼런스 개최' },
-    { year: '2024', event: '대규모 산학협력 프로젝트 시작' },
-    { year: '2023', event: '연구 분야 확장 (인지과학 추가)' },
-    { year: '2022', event: 'BSS-Lab 설립' }
+    //{ year: '2025', event: 'BSS-Lab 국제 인공지능 콘퍼런스 개최' },
+    //{ year: '2024', event: '대규모 산학협력 프로젝트 시작' },
+    { year: '2025', event: '연구분야 설정' },
+    { year: '2024', event: 'BSS-Lab 설립' }
   ];
 
   return (
@@ -211,8 +217,7 @@ const AboutPage = () => {
                 lineHeight: 1.6
               }}
             >
-              BSS-LAB은 첨단 인공지능과 데이터 사이언스 연구를 통해 미래 사회의 문제를 해결하고, 
-              혁신적인 기술을 개발하는 연구소입니다.
+              BSS-LAB은 다양한 공부활동과 다양한 언어를 공부하는 랩실입니다
             </Typography>
           </motion.div>
         </Container>
@@ -232,13 +237,11 @@ const AboutPage = () => {
                 연구실 <span style={{ color: '#f50057' }}>소개</span>
               </Typography>
               <Typography variant="body1" paragraph sx={{ mb: 3, color: 'text.secondary' }}>
-                BSS-LAB은 2022년에 설립된 연구소로, 인공지능, 데이터 사이언스, 인지과학 등 
-                다양한 분야의 학제간 연구를 수행하고 있습니다. 우리는 최신 연구와 기술 혁신을 
-                통해 사회적 가치를 창출하고, 미래 기술의 발전에 기여하고자 합니다.
+                BSS-LAB은 다양한 언어와 다양한 모델을 사용하여 공부합니다
               </Typography>
               <Typography variant="body1" paragraph sx={{ mb: 3, color: 'text.secondary' }}>
-                국내외 유수의 대학 및 연구기관과의 협력을 통해 글로벌 네트워크를 구축하고 있으며, 
-                산업계와의 긴밀한 협력을 통해 연구 결과의 실용화에도 힘쓰고 있습니다.
+                
+                
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
                 <motion.div
@@ -279,7 +282,7 @@ const AboutPage = () => {
             >
               <Box
                 component="img"
-                src="/public/assets/images/hero-bg.jpg"
+                src="/assets/images/hero-bg.jpg"
                 alt="BSS-LAB 연구실"
                 sx={{
                   width: '100%',
@@ -603,12 +606,12 @@ const AboutPage = () => {
             color="text.secondary"
             sx={{ maxWidth: 800, mx: 'auto', mb: 6 }}
           >
-            BSS-LAB은 다양한 국내외 기관과 협력하여 연구를 수행하고 있습니다.
+            BSS-LAB은 다양한 연구를 수행하고 있습니다.
           </Typography>
         </motion.div>
 
         <Grid container spacing={4} justifyContent="center">
-          {['서울대학교', 'KAIST', '삼성전자', 'LG AI연구소', '한국과학기술연구원', '한국전자통신연구원'].map((partner, index) => (
+          {['대진대학교', '컴퓨터공학과'].map((partner, index) => (
             <Grid item xs={6} sm={4} md={2} key={index}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -659,19 +662,19 @@ const AboutPage = () => {
                   BSS-LAB과 함께하세요
                 </Typography>
                 <Typography variant="h6" paragraph sx={{ opacity: 0.9, mb: 4 }}>
-                  연구, 협업, 채용 등 다양한 문의사항은 아래 연락처로 문의해주세요.
+                  지원, 연구 등 다양한 문의사항은 아래 연락처로 문의해주세요.
                 </Typography>
 
                 <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
                   <GroupsIcon sx={{ mr: 2 }} />
                   <Typography variant="body1">
-                    서울특별시 강남구 테헤란로 123, BSS연구동 5층
+                  경기 포천시 호국로 1007(우) 11159(지번) 선단동 산 11-1 이공다공 4층 B411
                   </Typography>
                 </Box>
                 <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
                   <SchoolIcon sx={{ mr: 2 }} />
                   <Typography variant="body1">
-                    이메일: contact@bsslab.com
+                    이메일: BssLab@gmail.com
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -702,7 +705,7 @@ const AboutPage = () => {
                     지원 및 문의
                   </Typography>
                   <Typography variant="body2" paragraph sx={{ mb: 3 }}>
-                    최신 연구 동향과 채용 정보를 받아보세요.
+                    
                   </Typography>
                   <motion.div
                     whileHover={{ scale: 1.05 }}

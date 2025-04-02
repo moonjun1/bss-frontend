@@ -50,50 +50,50 @@ const Research = () => {
     },
     {
       id: 'security',
-      title: '사이버 보안',
-      description: '침입 탐지, 악성코드 분석, 네트워크 보안, 암호화 기술 등 보안 분야의 연구를 진행합니다.',
+      title: '다양한 언어공부부',
+      description: 'C,  JAVA 등 다양한 언어를 공부합니다다',
       projects: [
         {
-          title: '차세대 침입 탐지 시스템',
-          description: '행동 패턴 분석을 통한 고급 보안 위협 탐지 시스템',
-          tags: ['침입 탐지', '행동 분석', '머신러닝'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 2', '예시 3'],
           image: 'red'
         },
         {
-          title: '양자 내성 암호화',
-          description: '양자 컴퓨팅 시대에 대비한 새로운 암호화 알고리즘 개발',
-          tags: ['암호화', '양자 컴퓨팅', '보안 프로토콜'],
+          title: '예시 1',
+          description: '다양한 알고리즘 ',
+          tags: ['스택', '이진탐색', '큐'],
           image: 'pink'
         },
         {
-          title: '블록체인 보안',
-          description: '분산 원장 기술의 보안 취약점 분석 및 개선 연구',
-          tags: ['블록체인', '스마트 컨트랙트', '분산 시스템'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           image: 'orange'
         }
       ]
     },
     {
       id: 'data',
-      title: '빅데이터 분석',
-      description: '대규모 데이터의 수집, 처리, 분석, 시각화를 통해 인사이트를 도출하는 연구를 수행합니다.',
+      title: '예시 1',
+      description: '예시 1',
       projects: [
         {
-          title: '실시간 스트림 처리',
-          description: '대용량 데이터 스트림의 실시간 처리 및 분석 시스템',
-          tags: ['스트림 처리', '실시간 분석', '분산 시스템'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           image: 'green'
         },
         {
-          title: '지능형 데이터 마이닝',
-          description: '복잡한 데이터에서 유용한 패턴을 추출하는 고급 알고리즘',
-          tags: ['데이터 마이닝', '패턴 인식', '기계학습'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           image: 'teal'
         },
         {
-          title: '소셜 네트워크 분석',
-          description: '소셜 미디어 데이터를 통한 사회적 현상 분석 및 예측',
-          tags: ['그래프 분석', '소셜 컴퓨팅', '네트워크 이론'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           image: 'cyan'
         }
       ]

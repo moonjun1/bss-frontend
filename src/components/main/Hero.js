@@ -204,12 +204,12 @@ const Hero = () => {
                     </motion.div>
                   </>
                 ) : (
-                  // 비로그인 상태일 때 버튼
+                  // 비로그인 상태일 때 버튼 - 게시판 바로가기 버튼 제거하고 연구 소개 버튼만 표시
                   <>
                     <motion.div variants={itemVariants}>
                       <Button
                         component={RouterLink}
-                        to="/board"
+                        to="/research"
                         variant="contained"
                         size="large"
                         color="secondary"

@@ -55,15 +55,15 @@ const ResearchPage = () => {
       description: '딥러닝, 강화학습, 자연어 처리 등 인공지능 분야의 첨단 연구를 수행하고 있습니다. 특히 다양한 도메인에 적용 가능한 범용 AI 모델 개발에 주력하고 있습니다.',
       projects: [
         {
-          title: '지능형 자연어 이해 시스템',
-          description: '대규모 언어 모델을 활용한 문맥 이해 및 추론 능력을 갖춘 시스템 개발 연구',
-          tags: ['자연어처리', 'LLM', '지식그래프'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '진행중'
         },
         {
-          title: '강화학습 기반 로봇 제어',
-          description: '복잡한 환경에서 로봇의 자율적 의사결정을 위한 강화학습 알고리즘 연구',
-          tags: ['강화학습', '로보틱스', '시뮬레이션'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '계획'
         }
       ]
@@ -73,60 +73,60 @@ const ResearchPage = () => {
       title: '데이터 사이언스',
       icon: <BarChartIcon fontSize="large" />,
       color: '#4caf50', // 초록색
-      description: '빅데이터 분석, 통계적 모델링, 데이터 마이닝 등을 통해 다양한 분야의 의사결정을 지원하는 연구를 수행합니다.',
+      description: '예시 1',
       projects: [
         {
-          title: '시계열 데이터 예측 모델',
-          description: '금융, 기상, 에너지 등 다양한 도메인의 시계열 데이터를 분석하고 예측하는 기법 연구',
-          tags: ['시계열분석', '예측모델링', 'LSTM'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '진행중'
         },
         {
-          title: '이상치 탐지 시스템',
-          description: '대규모 데이터에서 비정상적인 패턴을 자동으로 탐지하는 알고리즘 개발',
-          tags: ['비지도학습', '이상탐지', '클러스터링'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '완료'
         }
       ]
     },
     {
       id: 'cognitive',
-      title: '인지 컴퓨팅',
+      title: '예시 1',
       icon: <PsychologyIcon fontSize="large" />,
       color: '#f44336', // 빨간색
-      description: '인간의 인지 과정을 모방한 컴퓨팅 시스템 개발을 통해 더 자연스럽고 직관적인 인간-컴퓨터 상호작용 연구를 진행합니다.',
+      description: '예시 1',
       projects: [
         {
-          title: '멀티모달 감정 인식',
-          description: '텍스트, 음성, 영상 데이터를 종합적으로 활용하여 사용자의 감정 상태를 인식하는 시스템 개발',
-          tags: ['감정분석', '멀티모달', '딥러닝'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '계획'
         },
         {
-          title: '인지적 의사결정 모델',
-          description: '인간의 의사결정 패턴을 모방한 알고리즘 개발 및 실생활 적용 연구',
-          tags: ['의사결정이론', '행동경제학', '베이지안추론'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '진행중'
         }
       ]
     },
     {
       id: 'bioinformatics',
-      title: '생물정보학',
+      title: '예시 1',
       icon: <BiotechIcon fontSize="large" />,
       color: '#ff9800', // 주황색
-      description: '생물학적 데이터의 분석 및 해석을 위한 컴퓨팅 기법을 연구하며, 특히 의료 및 헬스케어 분야에서의 응용에 초점을 맞추고 있습니다.',
+      description: '예시 1',
       projects: [
         {
-          title: '유전체 데이터 분석',
-          description: '차세대 시퀀싱 데이터 분석을 통한 질병 관련 유전자 변이 탐색 연구',
-          tags: ['NGS', '바이오인포매틱스', '유전체학'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '진행중'
         },
         {
-          title: '의료 영상 분석',
-          description: '딥러닝 기반 의료 영상 분석을 통한 질병 진단 보조 시스템 개발',
-          tags: ['컴퓨터비전', '의료영상', '진단'],
+          title: '예시 1',
+          description: '예시 1',
+          tags: ['예시 1', '예시 1', '예시 1'],
           status: '계획'
         }
       ]
@@ -136,51 +136,51 @@ const ResearchPage = () => {
   // 연구 성과 데이터
   const achievements = [
     {
-      type: '논문',
-      title: '인공지능 기반 자연어 처리 시스템의 개선된 방법론',
-      conference: 'International Conference on Artificial Intelligence, 2024',
-      impact: '자연어 처리 분야의 새로운 접근법 제시'
+      type: '예시 1',
+      title: '예시 1',
+      conference: '예시 1',
+      impact: '예시 1'
     },
     {
-      type: '특허',
-      title: '딥러닝을 활용한 이상 탐지 알고리즘',
-      number: '특허 번호: KR10-0000000',
-      impact: '산업 데이터 분석에 적용 가능한 새로운 알고리즘'
+      type: '예시 1',
+      title: '예시 1',
+      number: '예시 1',
+      impact: '예시 1'
     },
     {
-      type: '수상',
-      title: '국제 인공지능 경진대회 2024',
-      result: '3위 입상',
-      impact: '실시간 자연어 처리 성능 평가에서 우수한 결과 도출'
+      type: '예시 1',
+      title: '예시 1',
+      result: '예시 1',
+      impact: '예시 1'
     },
     {
-      type: '기술이전',
-      title: '맞춤형 추천 알고리즘',
-      partner: '00기업',
-      impact: '이커머스 플랫폼에 적용된 기술로 사용자 경험 향상'
+      type: '예시 1',
+      title: '예시 1',
+      partner: '예시 1',
+      impact: '예시 1'
     }
   ];
 
   // 연구 인프라 데이터
   const infrastructure = [
     {
-      title: '고성능 컴퓨팅 클러스터',
-      description: 'NVIDIA A100 GPU 16대를 포함한 고성능 연구 클러스터',
+      title: '예시 1',
+      description: '예시 1',
       icon: <ComputerIcon />
     },
     {
-      title: '대규모 데이터 저장소',
-      description: '500TB 용량의 안전한 연구 데이터 저장 인프라',
+      title: '예시 1',
+      description: '예시 1',
       icon: <DataObjectIcon />
     },
     {
-      title: '실험 공간',
-      description: '로봇 및 IoT 디바이스 테스트를 위한 전용 실험실',
+      title: '예시 1',
+      description: '예시 1',
       icon: <BuildIcon />
     },
     {
-      title: '협업 환경',
-      description: '팀 연구 및 교육을 위한 최적화된 공간',
+      title: '예시 1',
+      description: '예시 1',
       icon: <TeamIcon />
     }
   ];
@@ -317,8 +317,7 @@ const ResearchPage = () => {
                 mx: 'auto'
               }}
             >
-              BSS-LAB은 인공지능, 데이터 사이언스, 인지 컴퓨팅 등 
-              다양한 연구 분야에서 혁신적인 결과를 창출하고 있습니다.
+              BSS-LAB 다양한 공부르 하고있습니다.
             </Typography>
           </motion.div>
         </Container>
@@ -494,7 +493,7 @@ const ResearchPage = () => {
               color="text.secondary"
               sx={{ maxWidth: 800, mx: 'auto', mb: 6 }}
             >
-              BSS-LAB의 최근 연구 성과와 발표된 논문, 특허 및 수상 실적입니다.
+              BSS-LAB의 최근 일 입니다다
             </Typography>
           </motion.div>
 
@@ -661,8 +660,8 @@ const ResearchPage = () => {
                       <SchoolIcon />
                     </ListItemIcon>
                     <ListItemText 
-                      primary="대학원생 모집" 
-                      secondary="석사, 박사 과정 학생을 모집합니다." 
+                      primary="랩원 모집" 
+                      secondary="학생을 모집합니다." 
                       secondaryTypographyProps={{ color: 'rgba(255,255,255,0.7)' }}
                     />
                   </ListItem>
@@ -671,8 +670,8 @@ const ResearchPage = () => {
                       <ScienceIcon />
                     </ListItemIcon>
                     <ListItemText 
-                      primary="산학 협력 프로젝트" 
-                      secondary="기업과의 공동 연구 및 기술 개발에 참여하세요." 
+                      primary="예시 1" 
+                      secondary="예시 1" 
                       secondaryTypographyProps={{ color: 'rgba(255,255,255,0.7)' }}
                     />
                   </ListItem>
@@ -681,8 +680,8 @@ const ResearchPage = () => {
                       <BiotechIcon />
                     </ListItemIcon>
                     <ListItemText 
-                      primary="인턴십 프로그램" 
-                      secondary="학부생을 위한 인턴십 기회를 제공합니다." 
+                      primary="예시 1" 
+                      secondary="예시 1" 
                       secondaryTypographyProps={{ color: 'rgba(255,255,255,0.7)' }}
                     />
                   </ListItem>
