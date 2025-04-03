@@ -179,7 +179,7 @@ const Contact = () => {
                             위치
                           </Typography>
                           <Typography variant="body1" color="text.secondary">
-                            서울특별시 강남구 테헤란로 123, BSS연구동 5층
+                          경기 포천시 호국로 1007 (우) 11159(지번) 선단동 산 11-1 대진대학교 이공학관다동
                           </Typography>
                         </Box>
                       </Box>

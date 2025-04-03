@@ -1,39 +1,19 @@
 version: '3.8'
 
 services:
-  # 개발용 프론트엔드 서비스
-  frontend-dev:
+  frontend:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+    container_name: bsslab-frontend
     ports:
-      - "3000:3000"
-    volumes:
-      # 소스 코드 변경 사항 실시간 반영
-      - ./:/app
-      # node_modules는 컨테이너 내부의 것을 사용
-      - /app/node_modules
+      - "80:80"  # Nginx는 80 포트 사용
     environment:
-      - REACT_APP_API_URL=http://backend:8080/api
-      - CHOKIDAR_USEPOLLING=true  # Windows에서 파일 변경 감지를 위해 필요한 경우
-    depends_on:
-      - backend
+      - REACT_APP_API_URL=http://203.237.79.121:8080/api  # 백엔드 서버 IP 주소
+    restart: always
     networks:
-      - app-network
-
-  # 백엔드 서비스
-  backend:
-    image: your-backend-image:latest  # 백엔드 이미지 이름으로 변경
-    # 필요한 환경 변수 설정
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      # CORS 설정 - 개발 환경에서 프론트엔드 접근 허용
-      - CORS_ALLOWED_ORIGINS=http://localhost:3000
-    ports:
-      - "8080:8080"  # 백엔드 포트를 실제 포트에 맞게 수정
-    networks:
-      - app-network
+      - frontend-network
 
 networks:
-  app-network:
+  frontend-network:
     driver: bridge
